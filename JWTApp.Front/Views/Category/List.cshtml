@@ -1,0 +1,44 @@
+﻿@model List<CategoryListModel>
+
+@{
+	Layout = "_Layout";
+}
+
+@{
+	<div class="text-end">
+	<a asp-action="Create" asp-controller="Category">Create A New Category</a>
+	</div>
+	if (Model?.Count>0)
+	{
+
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Id</td>
+					<td>Definition</td>
+					<td>Process</td>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach (var category in Model)
+				{
+					<tr>
+						<td>@category.Id</td>
+						<td>@category.Definition</td>
+
+						<td>
+						<a class="btn btn-danger btn-sm" asp-action="Remove" asp-controller="Category" asp-route-id="@category.Id">Delete</a>
+						<a class="btn btn-warning btn-sm" asp-action="Update" asp-controller="Category" asp-route-id="@category.Id">Update</a>
+						</td>		
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<div class="text-center">
+		    No record is found!
+		</div>
+	}
+}

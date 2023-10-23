@@ -1,0 +1,45 @@
+﻿@using System.Text.Json;
+@model ProductCreateModel
+
+@{
+	Layout = "_Layout";
+}
+
+
+<h3 class="text-dark">
+	Adding Product
+</h3>
+<form class="w-75 m-5 p-3 shadow mx-auto" method="post" asp-action="Create" asp-controller="Product">
+	@{
+		TempData["Categories"] = JsonSerializer.Serialize(Model.Categories);
+	}
+	<div class="mb-3">
+		<label class="form-label" asp-for="@Model.Name">Product Name:</label>
+		<span asp-validation-for="@Model.Name" class="text-danger d-block"></span>
+		<input type="text" class="form-control" asp-for="@Model.Name" />
+	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="@Model.Stock">Stock:</label>
+		<span asp-validation-for="@Model.Stock" class="text-danger d-block"></span>
+		<input class="form-control" asp-for="@Model.Stock" />
+	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="@Model.Price">Price:</label>
+		<span asp-validation-for="@Model.Price" class="text-danger d-block"></span>
+		<input class="form-control" asp-for="@Model.Price" />
+	</div>
+	<div class="mb-3">
+		<label class="form-label" asp-for="@Model.CategoryId">Choose a category:</label>
+		<select  class="form-select" asp-items="@Model.Categories" asp-for="@Model.CategoryId">
+		</select>
+	</div>
+
+
+	<div class="mb-3">
+		<button type="submit" class="btn btn-primary w-100">Save</button>
+	</div>
+
+	<div asp-validation-summary="ModelOnly" class="text-danger">
+	</div>
+</form>
+

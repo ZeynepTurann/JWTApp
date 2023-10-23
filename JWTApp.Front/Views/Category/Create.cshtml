@@ -1,0 +1,26 @@
+﻿@model CategoryCreateModel
+
+@{
+	Layout = "_Layout";
+}
+
+
+<h3 class="text-dark">
+	Adding Category
+</h3>
+<form class="w-75 m-5 p-3 shadow mx-auto" method="post" asp-action="Create" asp-controller="Category">
+	<div class="mb-3">
+		<label class="form-label" asp-for="@Model.Definition">Category Name:</label>
+		<span asp-validation-for="@Model.Definition" class="text-danger d-block"></span>
+		<input type="text" class="form-control" asp-for="@Model.Definition" />
+
+	</div>
+
+
+	<div class="mb-3">
+		<button type="submit" class="btn btn-primary w-100">Save</button>
+	</div>
+
+	<div asp-validation-summary="ModelOnly" class="text-danger">
+	</div>
+</form>
